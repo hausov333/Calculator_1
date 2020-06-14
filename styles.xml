@@ -1,65 +1,32 @@
-package com.example.calculator
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    
+    <style name="action_button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">#ff0000</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">0.5dp</item>
+    </style>
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
-import kotlinx.android.synthetic.main.activity_main.*
-import net.objecthunter.exp4j.ExpressionBuilder
-import java.lang.Exception
+    <style name="number_button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">#353537</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">0.5dp</item>
+    </style>
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        b_0.setOnClickListener{setTextFields("0")}
-        b_1.setOnClickListener{setTextFields("1")}
-        b_2.setOnClickListener{setTextFields("2")}
-        b_3.setOnClickListener{setTextFields("3")}
-        b_4.setOnClickListener{setTextFields("4")}
-        b_5.setOnClickListener{setTextFields("5")}
-        b_6.setOnClickListener{setTextFields("6")}
-        b_7.setOnClickListener{setTextFields("7")}
-        b_8.setOnClickListener{setTextFields("8")}
-        b_9.setOnClickListener{setTextFields("9")}
-        b_skl.setOnClickListener{setTextFields("(")}
-        b_skr.setOnClickListener{setTextFields(")")}
-        b_min.setOnClickListener{setTextFields("-")}
-        b_sum.setOnClickListener{setTextFields("+")}
-        b_umn.setOnClickListener{setTextFields("*")}
-        b_div.setOnClickListener{setTextFields("/")}
-
-        b_AC.setOnClickListener{
-            math_operation.text=""
-            result_text.text=""
-        }
-
-        b_back.setOnClickListener{
-            val str = math_operation.text.toString()
-            if (str.isNotEmpty()){ math_operation.text= str.substring(0,str.length-1) }
-            result_text.text=""
-        }
-
-        b_ravn.setOnClickListener{
-            try {
-                val ex = ExpressionBuilder(math_operation.text.toString()).build()
-                val result = ex.evaluate()
-                val longRes =  result.toLong()
-                if (result == longRes.toDouble())
-                    result_text.text = longRes.toString()
-                else
-                    result_text.text = result.toString()
-
-            }catch (e:Exception){
-                Log.d("Ошибка", "сообщение: ${e.message}")
-            }
-        }
-    }
-    fun setTextFields(str: String){
-        if (result_text.text!=""){
-            math_operation.text = result_text.text
-            result_text.text = ""
-        }
-        math_operation.append(str)
-    }
-}
+</resources>
